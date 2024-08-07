@@ -3,14 +3,14 @@
 create database Car
 on primary(
 Name = 'Car1',
-FileName = 'E:\Youssef\courses\ITI_Summer\Labs\Day02\Car1.mdf',
+FileName = 'E:\ITI_Summer\Labs\Day02\Car1.mdf',
 Size = 10MB,
 Filegrowth = 10MB,
 MaxSize = unlimited
 ),
 (
 Name = 'Car2',
-FileName = 'E:\Youssef\courses\ITI_Summer\Labs\Day02\Car2.ldf',
+FileName = 'E:\ITI_Summer\Labs\Day02\Car2.ldf',
 Size = 10MB,
 Filegrowth = 10MB,
 MaxSize = unlimited
