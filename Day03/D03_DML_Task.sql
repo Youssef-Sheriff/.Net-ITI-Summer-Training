@@ -37,10 +37,39 @@ join CountryLanguage L
 on L.CountryCode = C.Code
 where [Language] = 'Spanish' and IsOfficial = 1
 
-select * from [dbo].[CountryLanguage] 
 --10- Display country code for all those speak more than 2 languages.
-select Code 
+select Code
 from Country C
 join CountryLanguage L
 on L.CountryCode = C.Code
-where [Language] = 'Spanish' and IsOfficial = 1
+group by Code
+having COUNT(Language) > 2
+
+--11- Display the number of people on earth.
+select sum(Population) People
+from dbo.Country
+group by Region -- I make group by because without it overflow
+
+--12- Display all Continents along with the number of countries and total population in each continent.
+select 
+    Continent,
+    SUM(CAST(Population AS BIGINT)) AS TotalPopulation
+from 
+    Country
+group by
+    Continent;
+
+--13- You have just discovered a new country, Add it to your database. (Of course, your country have some cities and languages)
+insert into Country
+values
+('UA', 'United States', 'North America', 'Northern America', 9833517, 1776, 331002651, 78.8, 21433226, 20580234, 'United States', 'Federal Republic', 'Joe Biden', 1, 'US')
+
+--14- In your country, increase life expectation by 5 years.
+update Country
+set LifeExpectancy += 5
+where code = 'EGY'
+
+--15- Try to delete your country, what happens?
+delete from Country
+where code = 'EGY'  
+-- delete operation is being blocked because there are related records in the City table 'Foreign Key'
